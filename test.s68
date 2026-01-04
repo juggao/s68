@@ -1,0 +1,13 @@
+# strings68 test program
+1 = "Hello"
+2 = " World"
+3 = concat(1, 2)
+print 3
+
+10 = uppercase(3)
+print 10
+
+20 = "apple,banana,cherry"
+21 = split(20, ",")
+22 = get(21, "1")
+print 22

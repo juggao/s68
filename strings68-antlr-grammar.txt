@@ -1,0 +1,81 @@
+grammar strings68;
+
+// Parser Rules
+program
+    : statement* EOF
+    ;
+
+statement
+    : assignment
+    | printStmt
+    | ifStmt
+    | foreachStmt
+    | comment
+    ;
+
+assignment
+    : DIGIT_VAR '=' stringExpr
+    ;
+
+stringExpr
+    : STRING_LITERAL                                    # stringLiteral
+    | DIGIT_VAR                                         # varReference
+    | 'uppercase' '(' stringExpr ')'                    # uppercaseExpr
+    | 'lowercase' '(' stringExpr ')'                    # lowercaseExpr
+    | 'reverse' '(' stringExpr ')'                      # reverseExpr
+    | 'length' '(' stringExpr ')'                       # lengthExpr
+    | 'concat' '(' stringExpr ',' stringExpr ')'        # concatExpr
+    | 'split' '(' stringExpr ',' STRING_LITERAL ')'     # splitExpr
+    | 'get' '(' stringExpr ',' STRING_LITERAL ')'       # getExpr
+    | 'match' '(' stringExpr ',' STRING_LITERAL ')'     # matchExpr
+    | 'replace' '(' stringExpr ',' STRING_LITERAL ',' STRING_LITERAL ')' # replaceExpr
+    | 'substring' '(' stringExpr ',' STRING_LITERAL ',' STRING_LITERAL ')' # substringExpr
+    ;
+
+printStmt
+    : 'print' (STRING_LITERAL | DIGIT_VAR)
+    ;
+
+ifStmt
+    : 'if' condition 'then' statement* elseClause? 'endif'
+    ;
+
+elseClause
+    : 'else' statement*
+    ;
+
+condition
+    : (DIGIT_VAR | ITERATOR) 'equals' (DIGIT_VAR | ITERATOR | STRING_LITERAL)          # equalsCondition
+    | (DIGIT_VAR | ITERATOR) 'contains' (DIGIT_VAR | ITERATOR | STRING_LITERAL)        # containsCondition
+    | (DIGIT_VAR | ITERATOR) 'startswith' (DIGIT_VAR | ITERATOR | STRING_LITERAL)      # startsWithCondition
+    | (DIGIT_VAR | ITERATOR) 'endswith' (DIGIT_VAR | ITERATOR | STRING_LITERAL)        # endsWithCondition
+    ;
+
+foreachStmt
+    : 'foreach' ITERATOR 'in' DIGIT_VAR 'do' statement* 'endfor'
+    ;
+
+comment
+    : COMMENT
+    ;
+
+// Lexer Rules
+DIGIT_VAR
+    : [0-9]+
+    ;
+
+ITERATOR
+    : [a-zA-Z_][a-zA-Z0-9_]*
+    ;
+
+STRING_LITERAL
+    : '"' (~["\r\n] | '\\' .)* '"'
+    ;
+
+COMMENT
+    : '#' ~[\r\n]* -> skip
+    ;
+
+WS
+    : [ \t\r\n]+ -> skip
+    ;
