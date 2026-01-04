@@ -96,6 +96,14 @@ antlr4 -Dlanguage=Python3 strings68.g4
 5 = length(1)         # Get length (as string!)
 ```
 
+**Bit-like Operations (on strings):**
+```
+2 = shiftl(1, "2")    # Shift left 2 positions (loses chars, adds spaces)
+3 = shiftr(1, "2")    # Shift right 2 positions (loses chars, adds spaces)
+4 = rotl(1, "2")      # Rotate left 2 positions (wraps around)
+5 = rotr(1, "2")      # Rotate right 2 positions (wraps around)
+```
+
 **Manipulation:**
 ```
 3 = concat(1, 2)                    # Concatenate

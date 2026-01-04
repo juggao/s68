@@ -1,0 +1,197 @@
+# strings68 - Shift and Rotate Operations Test
+
+print "=== Shift Left Tests ==="
+
+# Basic shift left
+1 = "ABCDEF"
+print "Original:"
+print 1
+
+2 = shiftl(1, "1")
+print "Shift left 1:"
+print 2
+
+3 = shiftl(1, "2")
+print "Shift left 2:"
+print 3
+
+4 = shiftl(1, "3")
+print "Shift left 3:"
+print 4
+
+# Shift entire string
+5 = shiftl(1, "6")
+print "Shift left 6 (full):"
+print 5
+
+print "=== Shift Right Tests ==="
+
+10 = "ABCDEF"
+print "Original:"
+print 10
+
+11 = shiftr(10, "1")
+print "Shift right 1:"
+print 11
+
+12 = shiftr(10, "2")
+print "Shift right 2:"
+print 12
+
+13 = shiftr(10, "3")
+print "Shift right 3:"
+print 13
+
+print "=== Rotate Left Tests ==="
+
+20 = "ABCDEF"
+print "Original:"
+print 20
+
+21 = rotl(20, "1")
+print "Rotate left 1:"
+print 21
+
+22 = rotl(20, "2")
+print "Rotate left 2:"
+print 22
+
+23 = rotl(20, "3")
+print "Rotate left 3:"
+print 23
+
+# Full rotation (returns to original)
+24 = rotl(20, "6")
+print "Rotate left 6 (full):"
+print 24
+
+# Over-rotation (wraps around)
+25 = rotl(20, "7")
+print "Rotate left 7 (wrap):"
+print 25
+
+print "=== Rotate Right Tests ==="
+
+30 = "ABCDEF"
+print "Original:"
+print 30
+
+31 = rotr(30, "1")
+print "Rotate right 1:"
+print 31
+
+32 = rotr(30, "2")
+print "Rotate right 2:"
+print 32
+
+33 = rotr(30, "3")
+print "Rotate right 3:"
+print 33
+
+# Full rotation
+34 = rotr(30, "6")
+print "Rotate right 6 (full):"
+print 34
+
+print "=== Word Rotation ==="
+
+40 = "Hello World"
+print "Original:"
+print 40
+
+41 = rotl(40, "6")
+print "Rotate left 6:"
+print 41
+
+42 = rotr(40, "6")
+print "Rotate right 6:"
+print 42
+
+print "=== Numeric String Rotation ==="
+
+50 = "1234567890"
+print "Original:"
+print 50
+
+51 = rotl(50, "3")
+print "Rotate left 3:"
+print 51
+
+52 = rotr(50, "3")
+print "Rotate right 3:"
+print 52
+
+print "=== Combined Operations ==="
+
+60 = "ABCDEF"
+print "Original:"
+print 60
+
+61 = rotl(60, "2")
+print "After rotate left 2:"
+print 61
+
+62 = uppercase(61)
+print "After uppercase:"
+print 62
+
+63 = reverse(62)
+print "After reverse:"
+print 63
+
+print "=== Shift vs Rotate Comparison ==="
+
+70 = "HELLO"
+print "Original:"
+print 70
+
+71 = shiftl(70, "2")
+print "Shift left 2 (loses HE, adds spaces):"
+print 71
+
+72 = rotl(70, "2")
+print "Rotate left 2 (HE wraps to end):"
+print 72
+
+print "=== Practical Use: Caesar Cipher Simulation ==="
+
+# Rotate alphabet for simple cipher
+80 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+print "Normal alphabet:"
+print 80
+
+81 = rotl(80, "3")
+print "Rotated left 3 (Caesar +3):"
+print 81
+
+82 = rotr(80, "3")
+print "Rotated right 3 (Caesar -3):"
+print 82
+
+print "=== Edge Cases ==="
+
+90 = "A"
+print "Single char:"
+print 90
+
+91 = rotl(90, "1")
+print "Rotate left 1:"
+print 91
+
+92 = rotr(90, "1")
+print "Rotate right 1:"
+print 92
+
+100 = "AB"
+print "Two chars:"
+print 100
+
+101 = rotl(100, "1")
+print "Rotate left 1:"
+print 101
+
+102 = rotr(100, "1")
+print "Rotate right 1:"
+print 102
+
+print "=== All Shift/Rotate Tests Complete ==="
