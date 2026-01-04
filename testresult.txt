@@ -1,0 +1,121 @@
+=== Basic Operations ===
+Hello, strings68!
+Welcome to string-only programming
+=== String Transformations ===
+TESTING UPPERCASE
+testing lowercase
+txet siht esrever
+Length: 
+8
+=== Concatenation ===
+Hello World
+=== String Replace ===
+The dog sat on the mat
+The cat sat on the floor
+=== Substring ===
+Hello
+World
+=== Pattern Matching ===
+#12345
+$99.99
+john.doe@example.com
+555-1234
+=== Split and Array Access ===
+apple
+banana
+cherry
+date
+h
+e
+=== Conditionals: equals ===
+200 equals 201: TRUE
+200 equals 202: FALSE
+=== Conditionals: contains ===
+Found 'world' in string
+'xyz' not found
+=== Conditionals: startswith/endswith ===
+Starts with 'Hello'
+Ends with 'World'
+=== Character Iteration ===
+a
+b
+c
+=== Array Iteration ===
+RED
+GREEN
+BLUE
+=== Nested Conditionals ===
+Contains numbers
+Also contains 'pass'
+=== Conditionals in Loops ===
+APPLE
+Already uppercase
+CHERRY
+Already uppercase
+=== Complex Processing ===
+First Name: 
+John
+Last Name: 
+Doe
+Age: 
+35
+Job: 
+Engineer
+City: 
+New York
+=== Data Validation ===
+Valid email format
+Valid product code
+=== Text Formatting ===
+Title
+Case
+Example
+=== Log Processing ===
+Critical issue detected!
+Warning detected
+Info message
+=== CSV Processing ===
+Headers:
+Name
+Age
+City
+Row 1:
+Alice
+25
+Boston
+Row 2:
+Bob
+30
+Seattle
+=== String Building ===
+Hello beautiful world!
+=== Multiple Patterns ===
+First email: 
+alice@example.com
+First price: 
+$19.99
+=== Iteration with Transformations ===
+AA
+BB
+CC
+DD
+EE
+FF
+=== Complex Nested Logic ===
+Was lowercase: APPLE
+Was uppercase: banana
+Mixed case: Cherry
+Was uppercase: date
+Was lowercase: ELDERBERRY
+=== Length Analysis ===
+String 1 length: 
+5
+String 2 length: 
+21
+=== Final Complex Example ===
+Processing product data:
+Product: Laptop
+Price: $999
+Stock: 15
+Category: Electronics
+=== All Tests Complete ===
