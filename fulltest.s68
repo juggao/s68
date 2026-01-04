@@ -80,18 +80,18 @@ print 72
 print "=== Pattern Matching ==="
 
 80 = "Order #12345 costs $99.99"
-81 = match(80, "#\\d+")
+81 = match(80, "[#][0-9]+")
 print 81
 
-82 = match(80, "\\$[\\d.]+")
+82 = match(80, "[$][0-9]+[.][0-9]+")
 print 82
 
 90 = "Email: john.doe@example.com"
-91 = match(90, "[a-zA-Z.]+@[a-zA-Z.]+\\.[a-z]+")
+91 = match(90, "[a-z]+[.][a-z]+[@][a-z]+[.][a-z]+")
 print 91
 
 100 = "Phone: 555-1234"
-101 = match(100, "\\d{3}-\\d{4}")
+101 = match(100, "[0-9]+-[0-9]+")
 print 101
 
 # ============================================
@@ -267,7 +267,7 @@ print 506
 print "=== Data Validation ==="
 
 600 = "user@example.com"
-601 = match(600, "@")
+601 = match(600, "[@]")
 
 if 601 equals "@" then
     print "Valid email format"
@@ -276,7 +276,7 @@ else
 endif
 
 610 = "ABC-123-XYZ"
-611 = match(610, "[A-Z]{3}-\\d{3}-[A-Z]{3}")
+611 = match(610, "[A-Z]+[-][0-9]+[-][A-Z]+")
 
 if 611 equals 610 then
     print "Valid product code"
@@ -373,12 +373,12 @@ print 1010
 print "=== Multiple Patterns ==="
 
 1100 = "Contact: alice@example.com or bob@test.org"
-1101 = match(1100, "[a-z]+@[a-z]+\\.[a-z]+")
+1101 = match(1100, "[a-z]+[@][a-z]+[.][a-z]+")
 print "First email: "
 print 1101
 
 1110 = "Prices: $19.99, $29.99, $39.99"
-1111 = match(1110, "\\$\\d+\\.\\d+")
+1111 = match(1110, "[$][0-9]+[.][0-9]+")
 print "First price: "
 print 1111
 

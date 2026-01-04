@@ -15,6 +15,16 @@ import re
 from typing import Dict, Any, List, Optional
 
 
+# Enable debug mode by uncommenting:
+# DEBUG = True
+DEBUG = False
+
+def debug_print(msg):
+    """Print debug messages if DEBUG is enabled."""
+    if DEBUG:
+        print(f"DEBUG: {msg}", file=sys.stderr)
+
+
 class Strings68Interpreter:
     """Interpreter for the strings68 language."""
     
@@ -76,7 +86,8 @@ class Strings68Interpreter:
         # Variable
         else:
             value = self.get_variable(rest, loop_vars)
-            self.output.append(value)
+            # Even empty strings should be printed
+            self.output.append(value if value else "")
     
     def handle_assignment(self, line: str, loop_vars: Dict[str, str]):
         """Handle variable assignments."""
@@ -168,8 +179,15 @@ class Strings68Interpreter:
             string_val = self.evaluate_expression(args[0], loop_vars)
             pattern = args[1].strip('"')
             
-            match = re.search(pattern, string_val)
-            return match.group(0) if match else ""
+            debug_print(f"Match: pattern='{pattern}' against='{string_val}'")
+            
+            try:
+                match = re.search(pattern, string_val)
+                result = match.group(0) if match else ""
+                debug_print(f"Match result: '{result}'")
+                return result
+            except re.error as e:
+                raise SyntaxError(f"Invalid regex pattern '{pattern}': {e}")
         
         # replace(string, old, new)
         if expr.startswith('replace('):
