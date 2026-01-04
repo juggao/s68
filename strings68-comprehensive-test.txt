@@ -1,0 +1,558 @@
+# ============================================
+# strings68 - Comprehensive Feature Test
+# ============================================
+# This program demonstrates all features of
+# the strings68 language
+# ============================================
+
+# ============================================
+# SECTION 1: Basic Assignment and Printing
+# ============================================
+print "=== Basic Operations ==="
+
+1 = "Hello, strings68!"
+print 1
+
+2 = "Welcome to string-only programming"
+print 2
+
+# ============================================
+# SECTION 2: String Transformations
+# ============================================
+print "=== String Transformations ==="
+
+10 = "testing uppercase"
+11 = uppercase(10)
+print 11
+
+20 = "TESTING LOWERCASE"
+21 = lowercase(20)
+print 21
+
+30 = "reverse this text"
+31 = reverse(30)
+print 31
+
+40 = "count me"
+41 = length(40)
+print "Length: "
+print 41
+
+# ============================================
+# SECTION 3: String Concatenation
+# ============================================
+print "=== Concatenation ==="
+
+50 = "Hello"
+51 = " "
+52 = "World"
+53 = concat(50, 51)
+54 = concat(53, 52)
+print 54
+
+# ============================================
+# SECTION 4: String Replacement
+# ============================================
+print "=== String Replace ==="
+
+60 = "The cat sat on the mat"
+61 = replace(60, "cat", "dog")
+print 61
+
+62 = replace(60, "mat", "floor")
+print 62
+
+# ============================================
+# SECTION 5: Substring Extraction
+# ============================================
+print "=== Substring ==="
+
+70 = "Hello World"
+71 = substring(70, "0", "5")
+print 71
+
+72 = substring(70, "6", "5")
+print 72
+
+# ============================================
+# SECTION 6: Pattern Matching
+# ============================================
+print "=== Pattern Matching ==="
+
+80 = "Order #12345 costs $99.99"
+81 = match(80, "[#][0-9]+")
+print 81
+
+82 = match(80, "[$][0-9]+[.][0-9]+")
+print 82
+
+90 = "Email: john.doe@example.com"
+91 = match(90, "[a-z]+[.][a-z]+[@][a-z]+[.][a-z]+")
+print 91
+
+100 = "Phone: 555-1234"
+101 = match(100, "[0-9]+-[0-9]+")
+print 101
+
+# ============================================
+# SECTION 7: Split and Array Operations
+# ============================================
+print "=== Split and Array Access ==="
+
+110 = "apple,banana,cherry,date"
+111 = split(110, ",")
+
+112 = get(111, "0")
+print 112
+
+113 = get(111, "1")
+print 113
+
+114 = get(111, "2")
+print 114
+
+115 = get(111, "3")
+print 115
+
+# Split with empty delimiter (split into characters)
+120 = "hello"
+121 = split(120, "")
+122 = get(121, "0")
+123 = get(121, "1")
+print 122
+print 123
+
+# ============================================
+# SECTION 8: Conditionals - Equals
+# ============================================
+print "=== Conditionals: == and != ==="
+
+200 = "apple"
+201 = "apple"
+202 = "banana"
+
+if 200 == 201 then
+    print "200 == 201: TRUE"
+endif
+
+if 200 == 202 then
+    print "200 == 202: TRUE"
+else
+    print "200 == 202: FALSE"
+endif
+
+if 200 != 202 then
+    print "200 != 202: TRUE"
+endif
+
+if 200 != 201 then
+    print "200 != 201: TRUE"
+else
+    print "200 != 201: FALSE"
+endif
+
+# ============================================
+# SECTION 9: Conditionals - Contains
+# ============================================
+print "=== Conditionals: contains ==="
+
+210 = "hello world"
+211 = "world"
+212 = "xyz"
+
+if 210 contains 211 then
+    print "Found 'world' in string"
+endif
+
+if 210 contains 212 then
+    print "Found 'xyz' in string"
+else
+    print "'xyz' not found"
+endif
+
+# ============================================
+# SECTION 10: Conditionals - Starts/Ends With
+# ============================================
+print "=== Conditionals: startswith/endswith ==="
+
+220 = "Hello World"
+221 = "Hello"
+222 = "World"
+
+if 220 startswith 221 then
+    print "Starts with 'Hello'"
+endif
+
+if 220 endswith 222 then
+    print "Ends with 'World'"
+endif
+
+# ============================================
+# SECTION 11: Character Iteration
+# ============================================
+print "=== Character Iteration ==="
+
+300 = "ABC"
+foreach char in 300 do
+    301 = lowercase(char)
+    print 301
+endfor
+
+# ============================================
+# SECTION 12: Array Iteration
+# ============================================
+print "=== Array Iteration ==="
+
+310 = "red,green,blue"
+311 = split(310, ",")
+
+foreach color in 311 do
+    312 = uppercase(color)
+    print 312
+endfor
+
+# ============================================
+# SECTION 13: Nested Conditionals
+# ============================================
+print "=== Nested Conditionals ==="
+
+400 = "password123"
+401 = "123"
+402 = "pass"
+
+if 400 contains 401 then
+    print "Contains numbers"
+    if 400 contains 402 then
+        print "Also contains 'pass'"
+    endif
+endif
+
+# ============================================
+# SECTION 14: Conditionals in Loops
+# ============================================
+print "=== Conditionals in Loops ==="
+
+410 = "apple,BANANA,cherry,DATE"
+411 = split(410, ",")
+
+foreach fruit in 411 do
+    412 = uppercase(fruit)
+    413 = lowercase(fruit)
+    
+    if 412 == fruit then
+        print "Already uppercase"
+    else
+        print 412
+    endif
+endfor
+
+# ============================================
+# SECTION 15: Complex String Processing
+# ============================================
+print "=== Complex Processing ==="
+
+500 = "John:Doe:35:Engineer:New York"
+501 = split(500, ":")
+
+502 = get(501, "0")
+503 = get(501, "1")
+504 = get(501, "2")
+505 = get(501, "3")
+506 = get(501, "4")
+
+print "First Name: "
+print 502
+print "Last Name: "
+print 503
+print "Age: "
+print 504
+print "Job: "
+print 505
+print "City: "
+print 506
+
+# ============================================
+# SECTION 16: Data Validation Pattern
+# ============================================
+print "=== Data Validation ==="
+
+600 = "user@example.com"
+601 = match(600, "[@]")
+
+if 601 == "@" then
+    print "Valid email format"
+else
+    print "Invalid email"
+endif
+
+610 = "ABC-123-XYZ"
+611 = match(610, "[A-Z]+[-][0-9]+[-][A-Z]+")
+
+if 611 == 610 then
+    print "Valid product code"
+endif
+
+# ============================================
+# SECTION 17: Text Formatting
+# ============================================
+print "=== Text Formatting ==="
+
+700 = "title case example"
+701 = split(700, " ")
+
+foreach word in 701 do
+    710 = substring(word, "0", "1")
+    711 = uppercase(710)
+    712 = length(word)
+    713 = substring(word, "1", 712)
+    714 = concat(711, 713)
+    print 714
+endfor
+
+# ============================================
+# SECTION 18: Log Processing Simulation
+# ============================================
+print "=== Log Processing ==="
+
+800 = "ERROR: Connection failed"
+801 = "WARNING: Low memory"
+802 = "INFO: Server started"
+
+if 800 contains "ERROR" then
+    print "Critical issue detected!"
+endif
+
+if 801 contains "WARNING" then
+    print "Warning detected"
+endif
+
+if 802 contains "INFO" then
+    print "Info message"
+endif
+
+# ============================================
+# SECTION 19: CSV-like Data Processing
+# ============================================
+print "=== CSV Processing ==="
+
+900 = "Name,Age,City"
+901 = "Alice,25,Boston"
+902 = "Bob,30,Seattle"
+
+910 = split(900, ",")
+911 = split(901, ",")
+912 = split(902, ",")
+
+print "Headers:"
+foreach header in 910 do
+    print header
+endfor
+
+print "Row 1:"
+foreach field in 911 do
+    print field
+endfor
+
+print "Row 2:"
+foreach field in 912 do
+    print field
+endfor
+
+# ============================================
+# SECTION 20: String Building Pattern
+# ============================================
+print "=== String Building ==="
+
+1000 = "Hello"
+1001 = " "
+1002 = concat(1000, 1001)
+1003 = "beautiful"
+1004 = concat(1002, 1003)
+1005 = " "
+1006 = concat(1004, 1005)
+1007 = "world"
+1008 = concat(1006, 1007)
+1009 = "!"
+1010 = concat(1008, 1009)
+
+print 1010
+
+# ============================================
+# SECTION 21: Multiple Pattern Matches
+# ============================================
+print "=== Multiple Patterns ==="
+
+1100 = "Contact: alice@example.com or bob@test.org"
+1101 = match(1100, "[a-z]+[@][a-z]+[.][a-z]+")
+print "First email: "
+print 1101
+
+1110 = "Prices: $19.99, $29.99, $39.99"
+1111 = match(1110, "[$][0-9]+[.][0-9]+")
+print "First price: "
+print 1111
+
+# ============================================
+# SECTION 22: Iteration with Transformations
+# ============================================
+print "=== Iteration with Transformations ==="
+
+1200 = "abcdef"
+foreach letter in 1200 do
+    1201 = uppercase(letter)
+    1202 = concat(1201, 1201)
+    print 1202
+endfor
+
+# ============================================
+# SECTION 23: Complex Nested Structures
+# ============================================
+print "=== Complex Nested Logic ==="
+
+1300 = "apple,BANANA,Cherry,DATE,elderberry"
+1301 = split(1300, ",")
+
+foreach item in 1301 do
+    1310 = uppercase(item)
+    1311 = lowercase(item)
+    
+    if 1310 == item then
+        1320 = "Was uppercase: "
+        1321 = concat(1320, 1311)
+        print 1321
+    else
+        if 1311 == item then
+            1330 = "Was lowercase: "
+            1331 = concat(1330, 1310)
+            print 1331
+        else
+            1340 = "Mixed case: "
+            1341 = concat(1340, item)
+            print 1341
+        endif
+    endif
+endfor
+
+# ============================================
+# SECTION 24: String Length Comparisons
+# ============================================
+print "=== Length Analysis ==="
+
+1400 = "short"
+1401 = "very long string here"
+
+1402 = length(1400)
+1403 = length(1401)
+
+print "String 1 length: "
+print 1402
+print "String 2 length: "
+print 1403
+
+# ============================================
+# SECTION 24a: Shift and Rotate Operations
+# ============================================
+print "=== Shift and Rotate ==="
+
+1450 = "ABCDEF"
+print "Original: ABCDEF"
+
+1451 = shiftl(1450, "2")
+print "Shift left 2:"
+print 1451
+
+1452 = shiftr(1450, "2")
+print "Shift right 2:"
+print 1452
+
+1453 = rotl(1450, "2")
+print "Rotate left 2:"
+print 1453
+
+1454 = rotr(1450, "2")
+print "Rotate right 2:"
+print 1454
+
+# Practical example: circular buffer simulation
+1460 = "12345"
+1461 = rotl(1460, "1")
+1462 = rotl(1461, "1")
+print "Circular rotation:"
+print 1460
+print 1461
+print 1462
+
+# ============================================
+# SECTION 25: While Loops
+# ============================================
+print "=== While Loops ==="
+
+# Countdown example
+2500 = "5"
+print "Countdown:"
+while 2500 contains "5" do
+    print 2500
+    2500 = "4"
+endwhile
+while 2500 contains "4" do
+    print 2500
+    2500 = "3"
+endwhile
+while 2500 contains "3" do
+    print 2500
+    2500 = "2"
+endwhile
+while 2500 contains "2" do
+    print 2500
+    2500 = "1"
+endwhile
+while 2500 contains "1" do
+    print 2500
+    2500 = "0"
+endwhile
+print "Liftoff!"
+
+# String building with while
+2600 = ""
+2601 = "x"
+2602 = "xxx"
+while 2600 == "" do
+    2600 = concat(2600, 2601)
+    2603 = length(2600)
+    if 2603 == "3" then
+        2600 = 2602
+    endif
+endwhile
+print "Built string:"
+print 2600
+
+# Processing with while
+2700 = "processing"
+while 2700 contains "processing" do
+    print 2700
+    2700 = replace(2700, "processing", "done")
+endwhile
+print 2700
+
+# ============================================
+# SECTION 26: Final Complex Example
+# ============================================
+print "=== Final Complex Example ==="
+
+1500 = "Product:Laptop,Price:$999,Stock:15,Category:Electronics"
+1501 = split(1500, ",")
+
+print "Processing product data:"
+foreach pair in 1501 do
+    1510 = split(pair, ":")
+    1511 = get(1510, "0")
+    1512 = get(1510, "1")
+    
+    1520 = concat(1511, ": ")
+    1521 = concat(1520, 1512)
+    print 1521
+endfor
+
+# ============================================
+print "=== All Tests Complete ==="
+# ============================================

@@ -216,9 +216,11 @@ class Strings68Interpreter:
             string_val = self.evaluate_expression(args[0], loop_vars)
             positions = int(args[1].strip('"'))
             if len(string_val) == 0:
-                return string_val
-            positions = positions % len(string_val)  # Handle positions > length
-            return string_val[positions:] + ' ' * positions
+                return ""
+            if positions >= len(string_val):
+                return ""
+            # Shift left: remove from left
+            return string_val[positions:]
         
         # shiftr(string, positions)
         if expr.startswith('shiftr('):
@@ -226,9 +228,11 @@ class Strings68Interpreter:
             string_val = self.evaluate_expression(args[0], loop_vars)
             positions = int(args[1].strip('"'))
             if len(string_val) == 0:
-                return string_val
-            positions = positions % len(string_val)  # Handle positions > length
-            return ' ' * positions + string_val[:-positions] if positions > 0 else string_val
+                return ""
+            if positions >= len(string_val):
+                return ""
+            # Shift right: remove from right
+            return string_val[:-positions]
         
         # rotl(string, positions) - rotate left
         if expr.startswith('rotl('):
@@ -310,11 +314,9 @@ class Strings68Interpreter:
         """Handle if statements."""
         line = lines[start].strip()
         
-        # Parse condition - allow variables and string literals
-        match = re.match(
-            r'if\s+(\w+)\s+(equals|contains|startswith|endswith)\s+(.+?)\s+then',
-            line
-        )
+        # Parse condition - allow variables and string literals (including empty strings)
+        pattern = r'if\s+(\w+)\s+(==|!=|contains|startswith|endswith)\s+(.+?)\s+then\s*$'
+        match = re.match(pattern, line)
         if not match:
             raise SyntaxError(f"Invalid if statement: {line}")
         
@@ -324,13 +326,15 @@ class Strings68Interpreter:
         # Check if var2 is a string literal or variable
         var2_expr = var2_expr.strip()
         if var2_expr.startswith('"') and var2_expr.endswith('"'):
-            val2 = var2_expr[1:-1]  # String literal
+            val2 = var2_expr[1:-1]  # String literal (handles "" for empty string)
         else:
             val2 = self.get_variable(var2_expr, loop_vars)  # Variable
         
         # Evaluate condition
-        if op == 'equals':
+        if op == '==':
             condition = val1 == val2
+        elif op == '!=':
+            condition = val1 != val2
         elif op == 'contains':
             condition = val2 in val1
         elif op == 'startswith':
@@ -425,11 +429,9 @@ class Strings68Interpreter:
         """Handle while loops."""
         line = lines[start].strip()
         
-        # Parse while
-        match = re.match(
-            r'while\s+(\w+)\s+(equals|contains|startswith|endswith)\s+(.+?)\s+do',
-            line
-        )
+        # Parse while - allow empty string literals
+        pattern = r'while\s+(\w+)\s+(==|!=|contains|startswith|endswith)\s+(.+?)\s+do\s*$'
+        match = re.match(pattern, line)
         if not match:
             raise SyntaxError(f"Invalid while statement: {line}")
         
@@ -464,14 +466,16 @@ class Strings68Interpreter:
             # Check if var2 is a string literal or variable
             var2_expr_stripped = var2_expr.strip()
             if var2_expr_stripped.startswith('"') and var2_expr_stripped.endswith('"'):
-                val2 = var2_expr_stripped[1:-1]
+                val2 = var2_expr_stripped[1:-1]  # String literal (handles "")
             else:
                 val2 = self.get_variable(var2_expr_stripped, loop_vars)
             
             # Check condition
             condition = False
-            if op == 'equals':
+            if op == '==':
                 condition = val1 == val2
+            elif op == '!=':
+                condition = val1 != val2
             elif op == 'contains':
                 condition = val2 in val1
             elif op == 'startswith':

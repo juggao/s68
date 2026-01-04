@@ -98,8 +98,8 @@ antlr4 -Dlanguage=Python3 strings68.g4
 
 **Bit-like Operations (on strings):**
 ```
-2 = shiftl(1, "2")    # Shift left 2 positions (loses chars, adds spaces)
-3 = shiftr(1, "2")    # Shift right 2 positions (loses chars, adds spaces)
+2 = shiftl(1, "2")    # Shift left 2 positions (removes chars from left)
+3 = shiftr(1, "2")    # Shift right 2 positions (removes chars from right)
 4 = rotl(1, "2")      # Rotate left 2 positions (wraps around)
 5 = rotr(1, "2")      # Rotate right 2 positions (wraps around)
 ```
@@ -127,10 +127,14 @@ antlr4 -Dlanguage=Python3 strings68.g4
 
 **Conditionals:**
 ```
-if 1 equals 2 then
+if 1 == 2 then
     print "same"
 else
     print "different"
+endif
+
+if 1 != 2 then
+    print "not equal"
 endif
 
 if 1 contains 2 then
@@ -166,6 +170,13 @@ endfor
 while 100 contains "5" do
     print 100
     100 = "done"
+endwhile
+
+# Not equals
+200 = "start"
+while 200 != "end" do
+    print 200
+    200 = "end"
 endwhile
 ```
 

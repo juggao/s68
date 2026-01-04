@@ -1,0 +1,6 @@
+1 = "QWERTYQWERTYQWERTYQWERTY"
+
+while 1 != "" do
+    print 1
+    1 = shiftl(1, "1")
+endwhile

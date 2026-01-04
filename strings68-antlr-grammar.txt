@@ -10,6 +10,7 @@ statement
     | printStmt
     | ifStmt
     | foreachStmt
+    | whileStmt
     | comment
     ;
 
@@ -30,6 +31,10 @@ stringExpr
     | 'match' '(' stringExpr ',' STRING_LITERAL ')'     # matchExpr
     | 'replace' '(' stringExpr ',' STRING_LITERAL ',' STRING_LITERAL ')' # replaceExpr
     | 'substring' '(' stringExpr ',' STRING_LITERAL ',' STRING_LITERAL ')' # substringExpr
+    | 'shiftl' '(' stringExpr ',' STRING_LITERAL ')'    # shiftlExpr
+    | 'shiftr' '(' stringExpr ',' STRING_LITERAL ')'    # shiftrExpr
+    | 'rotl' '(' stringExpr ',' STRING_LITERAL ')'      # rotlExpr
+    | 'rotr' '(' stringExpr ',' STRING_LITERAL ')'      # rotrExpr
     ;
 
 printStmt
@@ -45,14 +50,19 @@ elseClause
     ;
 
 condition
-    : (DIGIT_VAR | ITERATOR) 'equals' (DIGIT_VAR | ITERATOR | STRING_LITERAL)          # equalsCondition
-    | (DIGIT_VAR | ITERATOR) 'contains' (DIGIT_VAR | ITERATOR | STRING_LITERAL)        # containsCondition
-    | (DIGIT_VAR | ITERATOR) 'startswith' (DIGIT_VAR | ITERATOR | STRING_LITERAL)      # startsWithCondition
-    | (DIGIT_VAR | ITERATOR) 'endswith' (DIGIT_VAR | ITERATOR | STRING_LITERAL)        # endsWithCondition
+    : (DIGIT_VAR | ITERATOR) '==' (DIGIT_VAR | ITERATOR | STRING_LITERAL)          # equalsCondition
+    | (DIGIT_VAR | ITERATOR) '!=' (DIGIT_VAR | ITERATOR | STRING_LITERAL)          # notEqualsCondition
+    | (DIGIT_VAR | ITERATOR) 'contains' (DIGIT_VAR | ITERATOR | STRING_LITERAL)    # containsCondition
+    | (DIGIT_VAR | ITERATOR) 'startswith' (DIGIT_VAR | ITERATOR | STRING_LITERAL)  # startsWithCondition
+    | (DIGIT_VAR | ITERATOR) 'endswith' (DIGIT_VAR | ITERATOR | STRING_LITERAL)    # endsWithCondition
     ;
 
 foreachStmt
     : 'foreach' ITERATOR 'in' DIGIT_VAR 'do' statement* 'endfor'
+    ;
+
+whileStmt
+    : 'while' condition 'do' statement* 'endwhile'
     ;
 
 comment
