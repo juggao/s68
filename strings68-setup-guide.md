@@ -152,6 +152,13 @@ endfor
 foreach item in 11 do
     print item
 endfor
+
+# While loops
+100 = "5"
+while 100 contains "5" do
+    print 100
+    100 = "done"
+endwhile
 ```
 
 ### Comments

@@ -69,6 +69,11 @@ class Strings68Interpreter:
                 i = self.handle_foreach(lines, i - 1, end, loop_vars)
                 continue
             
+            # While loop
+            if line.startswith('while '):
+                i = self.handle_while(lines, i - 1, end, loop_vars)
+                continue
+            
             # Assignment
             if '=' in line:
                 self.handle_assignment(line, loop_vars)
@@ -373,6 +378,78 @@ class Strings68Interpreter:
                 self.execute_block(lines, start + 1, endfor_pos, new_loop_vars)
         
         return endfor_pos + 1
+
+
+    def handle_while(self, lines: List[str], start: int, end: int,
+                     loop_vars: Dict[str, str]) -> int:
+        """Handle while loops."""
+        line = lines[start].strip()
+        
+        # Parse while
+        match = re.match(
+            r'while\s+(\w+)\s+(equals|contains|startswith|endswith)\s+(.+?)\s+do',
+            line
+        )
+        if not match:
+            raise SyntaxError(f"Invalid while statement: {line}")
+        
+        var1, op, var2_expr = match.groups()
+        
+        # Find endwhile
+        i = start + 1
+        depth = 1
+        endwhile_pos = None
+        
+        while i < end and depth > 0:
+            check_line = lines[i].strip()
+            if check_line.startswith('while '):
+                depth += 1
+            elif check_line == 'endwhile':
+                depth -= 1
+                if depth == 0:
+                    endwhile_pos = i
+            i += 1
+        
+        if endwhile_pos is None:
+            raise SyntaxError("Unmatched while/endwhile")
+        
+        # Execute loop while condition is true
+        max_iterations = 10000  # Prevent infinite loops
+        iterations = 0
+        
+        while iterations < max_iterations:
+            # Evaluate condition
+            val1 = self.get_variable(var1, loop_vars)
+            
+            # Check if var2 is a string literal or variable
+            var2_expr_stripped = var2_expr.strip()
+            if var2_expr_stripped.startswith('"') and var2_expr_stripped.endswith('"'):
+                val2 = var2_expr_stripped[1:-1]
+            else:
+                val2 = self.get_variable(var2_expr_stripped, loop_vars)
+            
+            # Check condition
+            condition = False
+            if op == 'equals':
+                condition = val1 == val2
+            elif op == 'contains':
+                condition = val2 in val1
+            elif op == 'startswith':
+                condition = val1.startswith(val2)
+            elif op == 'endswith':
+                condition = val1.endswith(val2)
+            
+            if not condition:
+                break
+            
+            # Execute loop body
+            self.execute_block(lines, start + 1, endwhile_pos, loop_vars)
+            iterations += 1
+        
+        if iterations >= max_iterations:
+            raise RuntimeError("While loop exceeded maximum iterations (10000)")
+        
+        return endwhile_pos + 1
 
 
 def main():

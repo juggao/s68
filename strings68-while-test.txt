@@ -1,0 +1,100 @@
+# strings68 - While Loop Tests
+
+print "=== Test 1: Simple While Loop ==="
+1 = "yes"
+while 1 equals "yes" do
+    print "Inside loop"
+    1 = "no"
+endwhile
+print "After loop"
+
+print "=== Test 2: Countdown ==="
+10 = "3"
+while 10 equals "3" do
+    print 10
+    10 = "2"
+endwhile
+while 10 equals "2" do
+    print 10
+    10 = "1"
+endwhile
+while 10 equals "1" do
+    print 10
+    10 = "0"
+endwhile
+print "Done!"
+
+print "=== Test 3: Contains Condition ==="
+20 = "hello"
+while 20 contains "hello" do
+    print 20
+    20 = "goodbye"
+endwhile
+print 20
+
+print "=== Test 4: String Building ==="
+30 = ""
+31 = "a"
+while 30 equals "" do
+    print "Building..."
+    30 = concat(31, 31)
+endwhile
+print 30
+
+print "=== Test 5: Replace Until Done ==="
+40 = "cat cat cat"
+while 40 contains "cat" do
+    print 40
+    40 = replace(40, "cat", "dog")
+endwhile
+print 40
+
+print "=== Test 6: Startswith Condition ==="
+50 = "prefix_data"
+while 50 startswith "prefix" do
+    print 50
+    50 = replace(50, "prefix", "suffix")
+endwhile
+print 50
+
+print "=== Test 7: Endswith Condition ==="
+60 = "data_suffix"
+while 60 endswith "suffix" do
+    print 60
+    60 = replace(60, "suffix", "prefix")
+endwhile
+print 60
+
+print "=== Test 8: Nested While with If ==="
+70 = "process"
+while 70 equals "process" do
+    print 70
+    if 70 contains "process" then
+        70 = "done"
+    endif
+endwhile
+print 70
+
+print "=== Test 9: While with Length Check ==="
+80 = "hello"
+81 = length(80)
+while 81 equals "5" do
+    print 80
+    80 = concat(80, "!")
+    81 = length(80)
+endwhile
+print 80
+
+print "=== Test 10: Complex While Pattern ==="
+100 = "start"
+101 = "0"
+while 100 equals "start" do
+    print "Iteration"
+    101 = concat(101, "1")
+    102 = length(101)
+    if 102 equals "4" then
+        100 = "end"
+    endif
+endwhile
+print "Final length:"
+print 101
